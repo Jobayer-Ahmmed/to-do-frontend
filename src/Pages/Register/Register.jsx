@@ -1,18 +1,23 @@
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
+import { MyContext } from "../../ContextApi/MyAuthProvider";
+
 
 const Register = () => {
+  const { createMyUser } = useContext(MyContext);
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
+  
     const {username, email, password, confirm_password} = data
+    console.log(username);
     if(password === confirm_password){
-
+      createMyUser(email, password)
+      .then(res=>console.log(res))
     }
     else{
       console.log("Password didnt match")
