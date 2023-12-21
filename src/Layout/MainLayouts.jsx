@@ -1,12 +1,12 @@
-import React from 'react'
-import Home from '../Pages/Home/Home/Home'
+
 import Navbar from '../Shared/Navbar'
+import { Outlet } from 'react-router-dom'
 
 const MainLayouts = () => {
   return (
     <div>
         <Navbar/>
-        <Home/>
+        <Outlet/>
     </div>
   )
 }
