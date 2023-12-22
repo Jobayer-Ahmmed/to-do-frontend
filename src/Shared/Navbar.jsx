@@ -4,10 +4,13 @@ const Navbar = () => {
   const navlinks = (
     <>
       <li>
-        <NavLink>Home</NavLink>
+        <NavLink to="/">Home</NavLink>
       </li>
       <li>
-        <NavLink>To Do Task</NavLink>
+        <NavLink to="/task-info">Task Info</NavLink>
+      </li>
+      <li>
+        <NavLink to="/to-do-task">To Do Task</NavLink>
       </li>
       <li>
         <NavLink>On Going Task </NavLink>
