@@ -8,6 +8,7 @@ import AddTask from "../Pages/AddTask/AddTask";
 
 
 
+
 const routes = createBrowserRouter([
     {
         path:"/",
@@ -28,7 +29,8 @@ const routes = createBrowserRouter([
             {
                 path:"/addtask",
                 element:<AddTask/>
-            }
+            },
+
            
         ]
     }

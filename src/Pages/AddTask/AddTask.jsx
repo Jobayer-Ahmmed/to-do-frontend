@@ -1,6 +1,11 @@
 import { useForm } from "react-hook-form";
+import useAxios from "../../hooks/useAxios/useAxios";
+import moment from "moment";
 
 const AddTask = () => {
+  const addToDoAxios = useAxios()
+  const nowTime = moment().format("YYYY-MM-DD"); 
+
   const {
     register,
     handleSubmit,
@@ -8,7 +13,16 @@ const AddTask = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
+    const {task_name, task_description, task_expected_completed_date } = data
+
+    addToDoAxios.post("/to-do-task", {
+      task_name,
+      task_description,
+      task_initial_date:nowTime,
+      task_expected_completed_date
+    })
+    .then(res=>console.log(res))
+
   };
 
   return (
@@ -16,15 +30,15 @@ const AddTask = () => {
       <div className=" border-[2px] p-10 rounded shadow-xl">
         <form onSubmit={handleSubmit(onSubmit)}>
           <input
-            {...register("task_Name", { required: true })}
+            {...register("task_name", { required: true })}
             type="text"
             placeholder="Task Name"
             className="w-72 h-10 px-3 rounded-sm outline-none border-[2px]"
           />{" "}
           <br />
-          {errors.task_Name && <span>Task Name is required</span>} <br />
+          {errors.task_name && <span>Task Name is required</span>} <br />
           <textarea
-            {...register("task_Description")}
+            {...register("task_description")}
             type="text"
             placeholder="Task Description"
             className="w-72 h-40 px-3 rounded-sm outline-none border-[2px] pt-2 mb-3"
@@ -33,11 +47,13 @@ const AddTask = () => {
 
           <label>Last Date to Complete The Task</label><br />
           <input
-            {...register("task_complete_date", { required: true })}
+            {...register("task_expected_completed_date", { required: true })}
             type="date"
-            className="w-72 h-10 px-3 rounded-sm outline-none border-[2px]"
+            className="w-72 h-10 px-3 rounded-sm outline-none border-[2px] mb-8"
           />{" "}
           <br />
+
+          <input type="submit" className="btn btn-primary" value="Add Task"/>
         </form>
       </div>
     </div>

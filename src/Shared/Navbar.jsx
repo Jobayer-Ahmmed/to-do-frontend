@@ -9,15 +9,7 @@ const Navbar = () => {
       <li>
         <NavLink to="/task-info">Task Info</NavLink>
       </li>
-      <li>
-        <NavLink to="/to-do-task">To Do Task</NavLink>
-      </li>
-      <li>
-        <NavLink>On Going Task </NavLink>
-      </li>
-      <li>
-        <NavLink>Complete Task</NavLink>
-      </li>
+
     </>
   );
   return (
